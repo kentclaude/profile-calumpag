@@ -32,18 +32,11 @@ body::after {
     pointer-events: none;
 }
 
-/* Simulated Terminal Window Container */
-.terminal-window {
-    max-width: 800px;
-    margin: 40px auto;
-    background-color: rgba(5, 7, 7, 0.85); /* Semi-transparent */
-    backdrop-filter: blur(5px);
-    border: 1px solid #166534;
-    border-radius: 6px;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+/* Content Wrapper */
+.content-wrapper {
     position: relative;
     z-index: 10;
+    width: 100%;
 }
 
 /* Top System Status Bar */
@@ -56,59 +49,62 @@ body::after {
     letter-spacing: 1px;
 }
 
+/* Fullscreen Sections */
+.fullscreen-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 /* Header / Hero Section */
-header {
-    margin-bottom: 25px;
-}
-
-.command-line {
-    color: #facc15;
-    /* Yellow prompt */
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
 .hero-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 .profile-avatar {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    border: 2px solid #166534;
+    border: 3px solid #166534;
     display: block;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .profile-avatar:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(74, 222, 128, 0.6);
 }
 
-.hero-content h1 {
-    font-size: 20px;
+.hero-text h1 {
+    font-size: 3rem;
     color: #ffffff;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
 }
 
-.hero-content p {
-    font-size: 13px;
+.hero-text p {
+    font-size: 1.5rem;
     color: #86efac;
 }
 
 /* Main Sections (handled by JS Observer) */
-section {
-    margin-bottom: 25px;
+section, header, footer {
     opacity: 0; /* Hidden initially, JS will add class to fade in */
-    transition: opacity 0.5s ease-in, transform 0.5s ease-out;
-    transform: translateY(20px);
+    transition: opacity 1s ease-in, transform 1s ease-out;
+    transform: translateY(40px) scale(0.98);
 }
-section.visible {
+section.visible, header.visible, footer.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 footer { 
@@ -121,19 +117,21 @@ footer.visible {
     transform: translateY(0);
 }
 
-section h2 {
-    font-size: 14px;
+section h2, footer h2 {
+    font-size: 2.5rem;
     color: #22c55e;
-    border-bottom: 1px solid #166534;
-    padding-bottom: 4px;
-    margin-bottom: 10px;
+    border-bottom: 2px solid #166534;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 section p {
-    font-size: 13px;
+    font-size: 1.5rem;
     color: #d1d5db;
+    max-width: 800px;
+    line-height: 1.8;
 }
 
 /* Skills List */
@@ -144,9 +142,9 @@ ul {
 }
 
 ul li {
-    font-size: 13px;
+    font-size: 1.5rem;
     color: #d1d5db;
-    margin-bottom: 6px;
+    margin-bottom: 15px;
 }
 
 ul li::before {
@@ -156,35 +154,42 @@ ul li::before {
 
 /* Projects Section */
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .project-card {
-    border: 1px solid #166534;
-    padding: 15px;
-    border-radius: 4px;
-    background-color: #080c0b;
-    transition: all 0.3s ease;
+    border: 1px dashed #166534;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.4s ease;
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
 }
 
 .project-card:hover {
     border-color: #4ade80;
-    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+    transform: translateY(-5px) scale(1.05);
+    background-color: rgba(22, 101, 52, 0.1);
+}
+
+.project-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #4ade80;
 }
 
 .project-card h3 {
-    font-size: 13px;
+    font-size: 1.2rem;
     color: #facc15;
-    margin-bottom: 8px;
-}
-
-.project-card p {
-    font-size: 12px;
 }
 
 /* Interactive Terminal Input */
@@ -251,18 +256,25 @@ ul li::before {
 }
 
 /* Footer */
-footer {
-    border-top: 1px dashed #166534;
-    padding-top: 15px;
+.social-links {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
     margin-top: 20px;
-    font-size: 13px;
 }
 
 .social-links a {
     color: #4ade80;
     text-decoration: none;
-    margin-right: 15px;
-    transition: color 0.2s, text-shadow 0.2s;
+    font-size: 1.8rem;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.8);
+    transform: scale(1.1);
 }
 
 .social-links a:hover {

@@ -34,16 +34,10 @@
         <div class="scroll-prompt">SYSTEM READY. SCROLL TO INITIATE.</div>
     </section>
 
-    <!-- Scrollable Content -->
-    <div class="terminal-window">
-        <!-- Top Terminal Meta Bar -->
-        <div class="sys-bar">
-            SYS.AUTH : GUEST_ACCESS_GRANTED &nbsp;&nbsp;|&nbsp;&nbsp; TERMINAL : TTY0
-        </div>
-
+    <!-- Scrollable Content Sections -->
+    <div class="content-wrapper">
         <!-- Header / Hero Section -->
-        <header>
-            <div class="command-line typing-anim">$ cat profile.txt</div>
+        <header class="fullscreen-section">
             <div class="hero-content">
                 <div class="avatar-container">
                     <img src="https://api.dicebear.com/9.x/bottts/svg?seed=Kent&backgroundColor=050707" alt="Kent's Avatar" class="profile-avatar">
@@ -55,58 +49,55 @@
             </div>
         </header>
 
-        <main>
-            <!-- About Me Section -->
-            <section id="about">
-                <h2 class="js-type-anim">// About Me</h2>
-                <p class="js-type-anim">Passionate student building foundational experience in systems logic, software applications, and
-                    modern web environments.</p>
-            </section>
+        <!-- About Me Section -->
+        <section id="about" class="fullscreen-section">
+            <h2 class="js-type-anim">// About Me</h2>
+            <p class="js-type-anim">Passionate student building foundational experience in systems logic, software applications, and
+                modern web environments.</p>
+        </section>
 
-            <!-- Skills / Interests Section -->
-            <section id="skills">
-                <h2 class="js-type-anim">// Skills & Interests</h2>
-                <ul>
-                    <li class="js-type-anim">C / C# & Desktop Architecture</li>
-                    <li class="js-type-anim">HTML5, CSS3, & Git Version Control</li>
-                    <li class="js-type-anim">Data Structures & System Algorithms</li>
-                    <li class="js-type-anim">Technical Drafting & AutoCAD</li>
-                </ul>
-            </section>
+        <!-- Skills / Interests Section -->
+        <section id="skills" class="fullscreen-section">
+            <h2 class="js-type-anim">// Skills & Interests</h2>
+            <ul>
+                <li class="js-type-anim">C / C# & Desktop Architecture</li>
+                <li class="js-type-anim">HTML5, CSS3, & Git Version Control</li>
+                <li class="js-type-anim">Data Structures & System Algorithms</li>
+                <li class="js-type-anim">Technical Drafting & AutoCAD</li>
+            </ul>
+        </section>
 
-            <!-- Projects Section -->
-            <section id="projects">
-                <h2>// Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3>Project_01: System Monitor</h3>
-                        <p>A desktop widget that tracks CPU and RAM usage in real-time.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>Project_02: PathFinder Bot</h3>
-                        <p>An algorithm visualizer that demonstrates A* and Dijkstra's routing.</p>
-                    </div>
+        <!-- Projects Section -->
+        <section id="projects" class="fullscreen-section">
+            <h2 class="js-type-anim">// Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-icon">[ 📦 ]</div>
+                    <h3 class="js-type-anim">System Monitor</h3>
                 </div>
-            </section>
-            
-            <!-- Interactive Terminal Prompt -->
-            <section id="interactive-prompt">
-                <div class="input-line">
-                    <span class="prompt-symbol">guest@tty0:~$</span>
-                    <input type="text" class="terminal-input" placeholder="_ (try typing here)" autocomplete="off">
+                <div class="project-card">
+                    <div class="project-icon">[ 🗺️ ]</div>
+                    <h3 class="js-type-anim">PathFinder Bot</h3>
                 </div>
-            </section>
-        </main>
+                <div class="project-card">
+                    <div class="project-icon">[ ⚙️ ]</div>
+                    <h3 class="js-type-anim">Coming Soon</h3>
+                </div>
+            </div>
+        </section>
 
         <!-- Contact / Socials Footer -->
-        <footer>
-            <div class="command-line">$ connect --socials</div>
+        <footer class="fullscreen-section">
+            <h2 class="js-type-anim">// Contact</h2>
             <div class="social-links">
-                <a href="https://github.com/kentclaude" target="_blank">[GitHub]</a>
-                <a href="mailto:your-email@example.com">[Email]</a>
+                <a href="https://github.com/kentclaude" target="_blank" class="js-type-anim">[GitHub]</a>
+                <a href="https://linkedin.com" target="_blank" class="js-type-anim">[LinkedIn]</a>
+                <a href="mailto:your-email@example.com" class="js-type-anim">[Email]</a>
             </div>
         </footer>
     </div>
+
+
 
     <script src="script.js"></script>
 </body>
