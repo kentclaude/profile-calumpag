@@ -82,9 +82,16 @@ body::after {
 /* Header / Hero Section */
 .hero-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 30px;
+    justify-content: space-between;
+    gap: 50px;
+    width: 100%;
+}
+
+.hero-text {
+    text-align: left;
+    flex: 1;
 }
 
 .profile-avatar {

@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('section, footer').forEach(sec => {
+    document.querySelectorAll('section, header, footer').forEach(sec => {
         sectionObserver.observe(sec);
     });
 
