@@ -47,6 +47,26 @@ header {
     margin-bottom: 10px;
 }
 
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #166534;
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+}
+
 .hero-content h1 {
     font-size: 20px;
     color: #ffffff;
@@ -96,6 +116,92 @@ ul li::before {
     color: #4ade80;
 }
 
+/* Projects Section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.project-card {
+    border: 1px solid #166534;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #080c0b;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.project-card:hover {
+    border-color: #4ade80;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+    transform: translateY(-2px);
+}
+
+.project-card h3 {
+    font-size: 13px;
+    color: #facc15;
+    margin-bottom: 8px;
+}
+
+.project-card p {
+    font-size: 12px;
+}
+
+/* Interactive Terminal Input */
+#interactive-prompt {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px dashed #166534;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prompt-symbol {
+    color: #22c55e;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    flex-grow: 1;
+    outline: none;
+    caret-color: #4ade80; /* Green blinking cursor */
+}
+
+.terminal-input::placeholder {
+    color: #166534;
+}
+
+/* Animations */
+.typing-anim {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #facc15;
+    animation: typing 1.5s steps(20, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #facc15; }
+}
+
 /* Footer */
 footer {
     border-top: 1px dashed #166534;
@@ -108,9 +214,11 @@ footer {
     color: #4ade80;
     text-decoration: none;
     margin-right: 15px;
+    transition: color 0.2s, text-shadow 0.2s;
 }
 
 .social-links a:hover {
     text-decoration: underline;
     color: #ffffff;
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
 }

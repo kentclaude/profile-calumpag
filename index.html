@@ -18,10 +18,15 @@
 
         <!-- Header / Hero Section -->
         <header>
-            <div class="command-line">$ cat profile.txt</div>
+            <div class="command-line typing-anim">$ cat profile.txt</div>
             <div class="hero-content">
-                <h1>Kent Claude Calumpag</h1>
-                <p>// Computer Engineering Student & Developer</p>
+                <div class="avatar-container">
+                    <img src="https://api.dicebear.com/9.x/bottts/svg?seed=Kent&backgroundColor=050707" alt="Kent's Avatar" class="profile-avatar">
+                </div>
+                <div class="hero-text">
+                    <h1>Kent Claude Calumpag</h1>
+                    <p>// Computer Engineering Student & Developer</p>
+                </div>
             </div>
         </header>
 
@@ -42,6 +47,29 @@
                     <li>Data Structures & System Algorithms</li>
                     <li>Technical Drafting & AutoCAD</li>
                 </ul>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects">
+                <h2>// Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Project_01: System Monitor</h3>
+                        <p>A desktop widget that tracks CPU and RAM usage in real-time.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Project_02: PathFinder Bot</h3>
+                        <p>An algorithm visualizer that demonstrates A* and Dijkstra's routing.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Interactive Terminal Prompt -->
+            <section id="interactive-prompt">
+                <div class="input-line">
+                    <span class="prompt-symbol">guest@tty0:~$</span>
+                    <input type="text" class="terminal-input" placeholder="_ (try typing here)" autocomplete="off">
+                </div>
             </section>
         </main>
 
