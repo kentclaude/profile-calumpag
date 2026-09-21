@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Intro Sequence Typing
     const introTextElement = document.getElementById("intro-text");
-    const targetIntro = "INTRODUCTION";
+    const targetIntro = "WELCOME USER";
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
     
     async function typeWithErrors(element, text, speed = 100, errorChance = 0.15) {
