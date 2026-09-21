@@ -5,11 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terminal Profile - Kent Claude</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
+    <!-- Spaceship HUD & Background -->
+    <div class="spaceship-bg">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+        <div id="ai-background-container"></div>
+    </div>
+    
+    <div class="target-reticle">
+        <div class="crosshair-x"></div>
+        <div class="crosshair-y"></div>
+        <div class="circle-inner"></div>
+        <div class="circle-outer"></div>
+    </div>
+
+    <!-- Fullscreen Intro Sequence -->
+    <section id="intro-screen">
+        <div class="typing-intro-container">
+            <span id="intro-text"></span><span class="blinking-cursor">_</span>
+        </div>
+        <div class="scroll-prompt">SYSTEM READY. SCROLL TO INITIATE.</div>
+    </section>
+
+    <!-- Scrollable Content -->
     <div class="terminal-window">
         <!-- Top Terminal Meta Bar -->
         <div class="sys-bar">
@@ -24,8 +49,8 @@
                     <img src="https://api.dicebear.com/9.x/bottts/svg?seed=Kent&backgroundColor=050707" alt="Kent's Avatar" class="profile-avatar">
                 </div>
                 <div class="hero-text">
-                    <h1>Kent Claude Calumpag</h1>
-                    <p>// Computer Engineering Student & Developer</p>
+                    <h1 class="js-type-anim">Kent Claude Calumpag</h1>
+                    <p class="js-type-anim">// Computer Engineering Student & Developer</p>
                 </div>
             </div>
         </header>
@@ -33,19 +58,19 @@
         <main>
             <!-- About Me Section -->
             <section id="about">
-                <h2>// About Me</h2>
-                <p>Passionate student building foundational experience in systems logic, software applications, and
+                <h2 class="js-type-anim">// About Me</h2>
+                <p class="js-type-anim">Passionate student building foundational experience in systems logic, software applications, and
                     modern web environments.</p>
             </section>
 
             <!-- Skills / Interests Section -->
             <section id="skills">
-                <h2>// Skills & Interests</h2>
+                <h2 class="js-type-anim">// Skills & Interests</h2>
                 <ul>
-                    <li>C / C# & Desktop Architecture</li>
-                    <li>HTML5, CSS3, & Git Version Control</li>
-                    <li>Data Structures & System Algorithms</li>
-                    <li>Technical Drafting & AutoCAD</li>
+                    <li class="js-type-anim">C / C# & Desktop Architecture</li>
+                    <li class="js-type-anim">HTML5, CSS3, & Git Version Control</li>
+                    <li class="js-type-anim">Data Structures & System Algorithms</li>
+                    <li class="js-type-anim">Technical Drafting & AutoCAD</li>
                 </ul>
             </section>
 
@@ -83,6 +108,7 @@
         </footer>
     </div>
 
+    <script src="script.js"></script>
 </body>
 
 </html>

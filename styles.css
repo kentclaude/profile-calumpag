@@ -36,11 +36,14 @@ body::after {
 .terminal-window {
     max-width: 800px;
     margin: 40px auto;
-    background-color: #050707;
+    background-color: rgba(5, 7, 7, 0.85); /* Semi-transparent */
+    backdrop-filter: blur(5px);
     border: 1px solid #166534;
     border-radius: 6px;
     padding: 20px;
     box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+    position: relative;
+    z-index: 10;
 }
 
 /* Top System Status Bar */
@@ -96,22 +99,26 @@ header {
     color: #86efac;
 }
 
-/* Main Sections */
+/* Main Sections (handled by JS Observer) */
 section {
     margin-bottom: 25px;
-    opacity: 0;
-    animation: bootup 0.5s forwards;
+    opacity: 0; /* Hidden initially, JS will add class to fade in */
+    transition: opacity 0.5s ease-in, transform 0.5s ease-out;
+    transform: translateY(20px);
+}
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Sequential Boot-up Delays */
-#about { animation-delay: 1.5s; }
-#skills { animation-delay: 2.0s; }
-#projects { animation-delay: 2.5s; }
-#interactive-prompt { animation-delay: 3.0s; }
 footer { 
     opacity: 0;
-    animation: bootup 0.5s forwards;
-    animation-delay: 3.5s; 
+    transition: opacity 0.5s ease-in, transform 0.5s ease-out;
+    transform: translateY(20px);
+}
+footer.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 section h2 {
@@ -233,16 +240,7 @@ ul li::before {
     50% { border-color: #facc15; }
 }
 
-@keyframes bootup {
-    from { 
-        opacity: 0; 
-        transform: translateY(10px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
+/* Removed CSS bootup, handled by JS transition now */
 
 @keyframes crt-flicker {
     0% { opacity: 0.95; }
@@ -271,4 +269,186 @@ footer {
     text-decoration: underline;
     color: #ffffff;
     text-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+}
+
+/* --- Spaceship Background --- */
+.spaceship-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background: radial-gradient(circle at center, #0b0f0e 0%, #020403 100%);
+    overflow: hidden;
+}
+
+.stars, .stars2, .stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.stars {
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: move-stars 100s linear infinite;
+    opacity: 0.3;
+}
+.stars2 {
+    background-image: 
+        radial-gradient(1px 1px at 50px 160px, #4ade80, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    animation: move-stars 70s linear infinite;
+    opacity: 0.5;
+}
+.stars3 {
+    background-image: 
+        radial-gradient(2px 2px at 10px 10px, #4ade80, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 150px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 400px 400px;
+    animation: move-stars 40s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes move-stars {
+    from { background-position: 0 0; }
+    to { background-position: 0 1000px; }
+}
+
+/* --- Targeting Reticle --- */
+.target-reticle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vh;
+    height: 60vh;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.15;
+    transition: top 0.1s ease, left 0.1s ease;
+    animation: pulse-reticle 4s infinite alternate;
+}
+
+.crosshair-x {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #4ade80;
+    box-shadow: 0 0 5px #4ade80;
+}
+
+.crosshair-y {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: #4ade80;
+    box-shadow: 0 0 5px #4ade80;
+}
+
+.circle-inner, .circle-outer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+.circle-inner {
+    width: 40%;
+    height: 40%;
+    border-style: dashed;
+    animation: spin 30s linear infinite;
+}
+
+.circle-outer {
+    width: 80%;
+    height: 80%;
+    border: 2px solid rgba(74, 222, 128, 0.3);
+    animation: spin-reverse 50s linear infinite;
+}
+
+@keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes spin-reverse { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+@keyframes pulse-reticle {
+    from { opacity: 0.1; transform: translate(-50%, -50%) scale(0.98); }
+    to { opacity: 0.25; transform: translate(-50%, -50%) scale(1.02); }
+}
+
+/* --- Intro Screen --- */
+#intro-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.typing-intro-container {
+    font-size: 6vw;
+    font-weight: bold;
+    font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
+    color: #4ade80;
+    text-shadow: 0 0 15px #4ade80;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.scroll-prompt {
+    font-size: 14px;
+    color: #166534;
+    animation: pulse-opacity 2s infinite;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.scroll-prompt.visible {
+    opacity: 1;
+}
+
+@keyframes pulse-opacity {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* AI Background Stream Text */
+#ai-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.ai-stream-text {
+    position: absolute;
+    color: rgba(74, 222, 128, 0.2);
+    font-size: 10px;
+    white-space: nowrap;
+    text-shadow: 0 0 2px rgba(74, 222, 128, 0.4);
+    transition: opacity 2s ease-in-out;
 }
